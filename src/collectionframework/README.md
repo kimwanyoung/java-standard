@@ -4,6 +4,7 @@
 그리고 인터페이스 List와 Set의 공통된 부분을 다시 뽑아서 새로운 인터페이스인 Collection을 추가로 정의하였다.
 Map인터페이스는 이들과는 전혀 다른 형태로 컬렉션을 다루기 때문에 같은 상속 계층도에 포함되지 못했다.
 ![Github_Logo](https://velog.velcdn.com/images/hyun_ha/post/6beec756-35f1-45ec-9554-ceb2089c0c2c/image.PNG)
+
 ***이미지 출처 : https://velog.io/@hyun_ha/JAVA-컬렉션-프레임워크Collection-Framework***
 
 - List : 순서가 있는 데이터의 집합, 데이터의 중복을 허용
