@@ -43,3 +43,27 @@ class BoxText {
 1. 모든 객체에 대해 동일하게 동작해야하는 static멤버에 타입변수 T를 사용할 수 없다.
 2. 제네릭 배열 타입의 참조변수를 선언하는 것은 가능하지만, new 생성자를 통해 배열을 생성하는 것은 불가능하다. 컴파일 시점에서 T가 어떤 타입인지 알 수 없기 떄문이다.
 
+### 제한된 제네릭 클래스
+
+제네릭 타입에 extends를 사용하면 특정 타입의 자손들만 대입할 수 있게 제한할 수 있다.
+
+```java
+import java.util.ArrayList;
+
+class FruitBox<T extends Fruit> {
+	ArrayList<T> list = new ArrayList<>();
+}
+```
+
+만약 클래스가 아니라 인터페이스를 구현하야 한다면 이때도 extends를 사용한다. implememts를 사용하지 않는다.
+
+```java
+import java.util.ArrayList;
+
+interface Eatable {
+}
+
+class FruitBox<T extends Fruit & Eatable> {
+	ArrayList<T> list = new ArrayList<>();
+}  
+```
