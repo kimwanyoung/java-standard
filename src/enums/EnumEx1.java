@@ -1,12 +1,12 @@
 package enums;
 
-enum Direction {EAST, SOUTH, WEST, NORTH}
+enum Direction1 {EAST, SOUTH, WEST, NORTH}
 
 public class EnumEx1 {
 	public static void main(String[] args) {
-		Direction d1 = Direction.EAST;
-		Direction d2 = Direction.valueOf("WEST");
-		Direction d3 = Enum.valueOf(Direction.class, "EAST");
+		Direction1 d1 = Direction1.EAST;
+		Direction1 d2 = Direction1.valueOf("WEST");
+		Direction1 d3 = Enum.valueOf(Direction1.class, "EAST");
 
 		System.out.println("d1 = " + d1);
 		System.out.println("d2 = " + d2);
@@ -27,9 +27,9 @@ public class EnumEx1 {
 			default -> System.out.println("Invalid direction.");
 		}
 
-		Direction[] dArr = Direction.values();
+		Direction1[] dArr = Direction1.values();
 
-		for (Direction d : dArr) {
+		for (Direction1 d : dArr) {
 			System.out.println(d.name() + " = " + d.ordinal());
 		}
 	}
