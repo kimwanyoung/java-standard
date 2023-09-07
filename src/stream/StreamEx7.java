@@ -2,10 +2,8 @@ package stream;
 
 import static java.util.stream.Collectors.*;
 
-import java.util.Comparator;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.Set;
 import java.util.stream.Stream;
 
 class Student {
@@ -75,10 +73,46 @@ public class StreamEx7 {
 			new Student("이자바", true, 1, 3, 200)
 		);
 
-		Map<Boolean, Optional<Student>> topScoreStuBySex = studentStream.collect(
-			Collectors.partitioningBy(Student::isMale, maxBy(Comparator.comparingInt(Student::getScore))));
+		// Map<Boolean, Optional<Student>> topScoreStuBySex = studentStream.collect(
+		// 	Collectors.partitioningBy(Student::isMale, maxBy(Comparator.comparingInt(Student::getScore))));
+		//
+		// System.out.println("남학생 1등 : " + topScoreStuBySex.get(true));
+		// System.out.println("여학생 1등 : " + topScoreStuBySex.get(false));
 
-		System.out.println("남학생 1등 : " + topScoreStuBySex.get(true));
-		System.out.println("여학생 1등 : " + topScoreStuBySex.get(false));
+		// Map<Integer, List<Student>> stuByBan = studentStream.collect(Collectors.groupingBy(Student::getBan));
+
+		// Map<Student.Level, Long> stuByLevel = studentStream
+		// 	.collect(groupingBy(s -> {
+		// 		int score = s.getScore();
+		// 		if (score >= 200) {
+		// 			return Student.Level.HIGH;
+		// 		}
+		// 		if (score >= 100) {
+		// 			return Student.Level.MID;
+		// 		}
+		// 		return Student.Level.LOW;
+		// 	}, counting()));
+		//
+		// System.out.println(stuByLevel);
+
+		Map<Integer, Map<Integer, Set<Student.Level>>> stuByHakAndBan = studentStream
+			.collect(
+				groupingBy(Student::getHak,
+					groupingBy(Student::getBan,
+						mapping(s -> {
+							int score = s.getScore();
+							if (score >= 200) {
+								return Student.Level.HIGH;
+							}
+							if (score >= 100) {
+								return Student.Level.MID;
+							}
+							return Student.Level.LOW;
+						}, toSet())))
+			);
+
+		for (Integer i : stuByHakAndBan.keySet()) {
+			System.out.println(stuByHakAndBan.get(i));
+		}
 	}
 }
